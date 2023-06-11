@@ -6,13 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 
 class ProductController extends Controller {
-    
-     public function index(){
+
+    public function index() {
         return view('productlist');
     }
-    
-      public function productDetails(){
-        return view('product-details');
+
+    public function productDetails(Request $request) {
+        $id = $request['productID'];
+        $product = Product::find($id);
+
+        return view('product-details', compact('product'));
+    }
+
+    public function addproduct() {
+        return view('addproduct');
     }
 
     public function loadAllProducts() {

@@ -25,7 +25,7 @@
                         <ul class="product-bar">
                             <li>
                                 <h4>Product</h4>
-                                <h6>Carrara	</h6>
+                                <h6>{{ $product->name }}</h6>
                             </li>
                             <li>
                                 <h4>Code</h4>

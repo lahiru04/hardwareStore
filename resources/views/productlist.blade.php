@@ -196,10 +196,10 @@
         '</label>' +
         '</td>' +
         '<td class="productimgname">' +
-        '<a href="javascript:void(0);" class="product-img">' +
+        '<a href="{{ url('/product-details') }}?productID='+product.id+'" class="product-img">' +
         '<img src="assets/img/product/product2.jpg" alt="product">' +
         '</a>' +
-        '<a href="javascript:void(0);">' + product.name + '</a>' +
+        '<a href="{{ url('/product-details') }}?productID='+product.id+'">' + product.name + '</a>' +
         '</td>' +
         '<td>' + product.code + '</td>' +
         '<td>Marble</td>' +
