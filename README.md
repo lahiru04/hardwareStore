@@ -40,3 +40,13 @@ To set up the Stock Management System for Hardware Stores, follow these steps:
 4. Rename the .env.example file to .env and update the database connection details.
 
 5. Generate an application key by running the following command:
+   ```bash
+   php artisan key:generate
+6. Run the database migrations to create the necessary tables:
+   ```bash
+   php artisan migrate
+7. Start the development server:   
+   ```bash
+   php artisan serve
+8. Access the application by visiting http://localhost:8000 in your web browser.   
+
