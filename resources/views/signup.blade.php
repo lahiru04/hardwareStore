@@ -74,7 +74,7 @@
                                 <a id="btnSignUp" class="btn btn-login">Sign Up</a>
                             </div>
                             <div class="signinform text-center">
-                                <h4>Already a user? <a href="signinx" class="hover-a">Sign In</a></h4>
+                                <h4>Already a user? <a href="{{ url('/') }}" class="hover-a">Sign In</a></h4>
                             </div>
 
                         </div>
@@ -111,7 +111,7 @@
         let rePassword = $('#rePassword').val();
        
         $.ajax({
-            url: '/registerUser', // Replace with the actual URL
+            url: "{{ url('/registerUser') }}", // Replace with the actual URL
             
             type: 'POST',
             data: {
