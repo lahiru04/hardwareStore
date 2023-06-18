@@ -64,7 +64,14 @@ class CustomAuthController extends Controller {
                                 ]
                 );
                 if ($validator->fails()) {
-                    return response()->json(['message' => 'Something went wrong', 'type' => 0]);
+                    $errors = $validator->errors();
+                    // Access the error messages
+                    $messages = "";
+                    foreach ($errors->all() as $message) {
+                        $messages =  $messages." \n".$message;
+                    }
+
+                    return response()->json(['message' => $messages, 'type' => 0]);
                 }
 
                 // Create a new user
