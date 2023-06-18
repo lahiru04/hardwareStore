@@ -50,6 +50,16 @@ class ProductController extends Controller {
         }
     }
 
+    public function deleteProduct(Request $request) {
+        $id = $product->name = $request['id'];
+        $product = Product::findOrFail($id);
+        $product->status = 0;
+
+        $product->save();
+        
+          return response()->json(['message' => 'Product successfully deleted', 'result' => true]);
+    }
+
     public function addProductx(Request $request) {
 
         return response()->json(['message' => 'Product added successfully', 'result' => true]);

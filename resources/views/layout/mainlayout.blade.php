@@ -263,8 +263,8 @@
                             <li class="submenu">
                                 <a href="javascript:void(0);"><img src="assets/img/icons/product.svg" alt="img"><span> Product</span> <span class="menu-arrow"></span></a>
                                 <ul>
-                                    <li><a href="productlist">Product List</a></li>
-                                    <li><a href="addproduct">Add Product</a></li>
+                                    <li><a href="{{ url('productlist') }}">Product List</a></li>
+                                    <li><a href="{{ url('addproduct') }}">Add Product</a></li>
                                     <li><a href="categorylist">Category List</a></li>
                                     <li><a href="addcategory">Add Category</a></li>
                                     <li><a href="subcategorylist">Sub Category List</a></li>

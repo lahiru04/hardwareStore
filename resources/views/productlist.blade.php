@@ -215,7 +215,7 @@
         '<a class="me-3" href="editproduct">' +
         '<img src="assets/img/icons/edit.svg" alt="img">' +
         '</a>' +
-        '<a class="confirm-text" href="javascript:void(0);">' +
+        '<a class="confirm-text" href="javascript:deleteProduct('+product.id+');">' +
         '<img src="assets/img/icons/delete.svg" alt="img">' +
         '</a>' +
         '</td>' +
@@ -227,6 +227,60 @@
         });
     });
 
+    function deleteProduct(productId)
+    {
+      
+          Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: !0,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        confirmButtonClass: "btn btn-primary",
+        cancelButtonClass: "btn btn-danger ml-1",
+        buttonsStyling: !1,
+      }).then(function (t) {
+          
+            let email = $('#email').val();
+        let password = $('#password').val();
+
+
+        $.ajax({
+//            url: '/login', // Replace with the actual URL
+            url: "{{ url('/sign-in') }}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                email: email,
+                password: password
+            }
+
+            ,
+            success: function (response) {
+                // Handle the response from the server
+                console.log(response);
+             
+
+            }
+
+            ,
+            error: function (xhr, status, error) {
+                // Handle any errors that occurred during the Ajax call
+                console.log(error);
+            }
+        });
+          
+       /* t.value &&
+          Swal.fire({
+            type: "success",
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            confirmButtonClass: "btn btn-success",
+          });*/
+      });
+    }
 
 </script>
 @endsection
