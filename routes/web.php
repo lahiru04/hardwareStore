@@ -22,7 +22,7 @@ Route::post('registerUser', [CustomAuthController::class, 'customSignup'])->name
 Route::get('/', [CustomAuthController::class, 'index'])->name('customSignin');
 Route::post('sign-in', [CustomAuthController::class, 'signinProcess'])->name('customSign-in');
 Route::post('logout', [CustomAuthController::class, 'signOut'])->name('logout');
-
+  
 Route::get('/signup', function () {
     return view('signup');
 })->name('signup');
@@ -35,36 +35,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('insertProduct', [ProductController::class, 'insertProduct'])->name('insertProduct');
     Route::get('addproduct', [ProductController::class, 'addproduct'])->name('addproduct');
     Route::get('product-details', [ProductController::class, 'productDetails'])->name('product-details');
+    Route::get('editproduct', [ProductController::class, 'editProduct'])->name('editproduct');
+    Route::get('updateProduct', [ProductController::class, 'updateProduct'])->name('updateProduct');
+  
 
-    /*  Route::get('insertProduct', [ProductController::class, 'insertProduct'])->name('insertProduct');
-
-
-      Route::get('/product-details', function () {
-      return view('product-details');
-      })->name('product-details');
-
-      Route::get('/', function () {
-      return view('index');
-      })->name('index');
-
-      Route::get('/index', function () {
-      return view('index');
-      })->name('index');
-
-      Route::get('/productlist', function () {
-      return view('productlist');
-      })->name('productlist');
-
-      Route::get('/addproduct', function () {
-      return view('addproduct');
-      })->name('addproduct');
-
-      Route::get('/categorylist', function () {
-      return view('categorylist');
-      })->name('categorylist');
-
-      Route::get('/sample', function () {
-      return view('sample');
-      })->name('sample'); */
 });
 

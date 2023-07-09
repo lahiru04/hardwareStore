@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CustomAuthController extends Controller {
+    
+    public function test() {
+        echo 'sample';
+    }
 
     public function index() {
 

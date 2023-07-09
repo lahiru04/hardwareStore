@@ -16,6 +16,6 @@ class Product extends Model
         'finish',
         'size',
         'location',
-        'status',
+        'status',  'crate','qtySqm','qtyPcs','imageUrl'
     ];
 }

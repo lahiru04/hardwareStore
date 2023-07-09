@@ -1,5 +1,5 @@
 <?php ?>
-<?php $page = "addproduct"; ?>
+<?php $page = "editproduct"; ?>
 
 @extends('layout.mainlayout')
 @section('content')
@@ -7,8 +7,9 @@
 
 <div class="page-header">
     <div class="page-title">
-        <h4>Product Add</h4>
-        <h6>Create New Product</h6>
+        <h4>Product Edit</h4>
+        <h6>Modify Current Product</h6>
+         <input id="productId" type="hidden" value="{{ $product->id }}">
     </div>
 </div>
 <!-- /add -->
@@ -18,25 +19,46 @@
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Product Name</label>
-                    <input id="productName" type="text" >
+                    <input id="productName" type="text" value="{{ $product->name }}"> 
                 </div>
             </div> <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Product Code</label>
-                    <input id="productCode" type="text" >
+                    <input id="productCode" type="text"  value="{{ $product->code }}">
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                    <label>Category</label>
+                    <label>Category </label> 
                     <select id ="categoryDropdown" class="select">
-                        <option value="-1">Select Here</option>
-                        <option value="1">Travertine</option>
-                        <option value="2">Granite</option>
-                        <option value="3">Marble</option>
-                        <option value="4">Limestone</option>
-                        <option value="5">Bluestone</option>
-                        <option value="6">Mosaics</option>
+                         <option value="-1">Select Here</option>
+                         @php
+
+                         for($i=0;$i<count($categories);$i++)
+                                          {
+                                          $category = $categories[$i];
+
+                                          $j =$i+1;
+
+                                          if($j== $product->categoryId)
+                             {
+                             @endphp
+                             <option value="{{$j}}" selected>{{ $category }}</option>
+                             @php 
+                             }else
+                             @endphp
+                             <option value="{{$j}}" >{{ $category }}</option>
+
+                             @php
+                             {
+                             }
+
+
+                             }
+                             @endphp
+                       
+                        
+                  
                     </select>
                 </div>
             </div>
@@ -44,53 +66,64 @@
                 <div class="form-group">
                     <label>Finish</label>
                     <select id="finishDropDown" class="select">
-                        <option>Select Here</option>
-                        <option value="Honed">Honed</option>
-                        <option value="Polish">Polished</option>
-                         <option value="PAVER_TUMBLED">PAVER_TUMBLED</option>
-                        
+                        <option value="-1">Select Here</option>
+                        @php
+                        for($i=0;$i<count($finishes);$i++){
+                                         $finish =  $finishes[$i];  
+
+                            if($finish==$product->finish)
+                            {@endphp
+                            <option value="{{$finish}}" selected>{{ $finish }}</option>
+                            @php
+                            }else
+                            {
+                            @endphp
+                            <option value="{{$finish}}" >{{ $finish }}</option>
+                            @php                   }
+
+                            } @endphp
+                     
                     </select>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Size</label>
-                    <input id="productSize" type="text" >
+                    <input id="productSize" type="text" value="{{ $product->size }}">
                     <label id="productSizeWarning" style="font-size: 12px; color: red;"></label>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Crate No</label>
-                    <input id="crateNo" type="text" >
+                    <input id="crateNo" type="text" value="{{ $product->crate }}">
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                     <label>QTY (SQM)</label>
-                    <input id="qtySqm"  type="number" step=".01">
+                    <input id="qtySqm"  type="number" step=".01" value="{{ $product->qtySqm }}">
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                     <label>QTY (PCS)</label>
-                    <input id="qtyPcs" type="number" >
+                    <input id="qtyPcs" type="number" value="{{ $product->qtyPcs }}">
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Location</label>
-                    <input id="location" type="text" >
+                    <input id="location" type="text" value="{{ $product->location }}">
                 </div>
             </div>
 
 
             <div class="col-lg-12">
                 <div class="form-group">
-                    <label>Product Image</label>
+                    <label>	Product Image</label>
                     <div class="image-upload">
-
-                        <input type="file" id="productImage" name="productImage">
+                        <input type="file">
                         <div class="image-uploads">
                             <img src="assets/img/icons/upload.svg" alt="img">
                             <h4>Drag and drop a file to upload</h4>
@@ -99,7 +132,7 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <a id="submitButton" class="btn btn-submit me-2">Submit</a>
+                <a id="submitButton" class="btn btn-submit me-2">Update</a>
                 <a href="productlist" class="btn btn-cancel">Cancel</a>
             </div>
         </div>
@@ -122,7 +155,7 @@
                 showCancelButton: !0,
                 confirmButtonColor: "#198754",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, insert it!",
+                confirmButtonText: "Yes, update it!",
                 confirmButtonClass: "btn btn-primary",
                 cancelButtonClass: "btn btn-danger ml-1",
                 buttonsStyling: !1,
@@ -167,6 +200,7 @@
 
     function insertData()
     {
+        let productId = $("#productId").val();
         let productName = $("#productName").val();
         let productCode = $("#productCode").val();
         let productSize = $("#productSize").val();
@@ -176,13 +210,14 @@
         let productFinish = $('#finishDropDown').val();
         let location = $("#location").val();
         let crateNo = $("#crateNo").val();
-     
+        let imageUrl = "xxxxxx ";
         
         $.ajax({
-            url: "{{ route('insertProduct') }}",
+            url: "{{ route('updateProduct') }}",
             method: 'GET',
             dataType: 'json',
             data: {
+                productId:productId,
                 name: productName,
                 code: productCode,
                 categoryId: categoryId,
@@ -192,15 +227,15 @@
                 qtySqm: qtySqm,
                 qtyPcs: qtyPcs,
                 productFinish: productFinish,
-            
+                imageUrl:imageUrl
 
                         // Add more key-value pairs as needed
             },
             success: function (response) {
                 Swal.fire({
                     type: "success",
-                    title: "Inserted!",
-                    text: "Your product has been inserted.",
+                    title: "Updated!",
+                    text: "Your product has been updated.",
                     confirmButtonClass: "btn btn-success",
                 })
                 console.log(response);

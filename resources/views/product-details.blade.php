@@ -29,53 +29,38 @@
                             </li>
                             <li>
                                 <h4>Code</h4>
-                                <h6>CARCH122061010</h6>
+                                <h6>{{ $product->code }}</h6>
                             </li>
                             <li>
                                 <h4>Category</h4>
-                                <h6>Marble</h6>
+                                <h6>{{ $categories[$product->categoryId-1]}}</h6>
                             </li>
                             <li>
                                 <h4>Finish</h4>
-                                <h6>Honed</h6>
+                                <h6>{{ $product->finish }}</h6>
                             </li>
                             <li>
                                 <h4>Size</h4>
-                                <h6>1220*610*10</h6>
+                                <h6>{{ $product->size }}</h6>
                             </li>
                             <li>
-                                <h4>Create</h4>
-                                <h6>MCP4062</h6>
+                                <h4>Crate</h4>
+                                <h6>{{ $product->crate }}</h6>
                             </li>
                             <li>
                                 <h4>Qty(sqm)</h4>
-                                <h6>44.652</h6>
+                                 <h6>{{ $product->qtySqm }}</h6>
                             </li>
                             <li>
                                 <h4>Qty(pcs)</h4>
-                                <h6>60</h6>
+                                 <h6>{{ $product->qtyPcs }}</h6>
                             </li>
-                            <li>
-                                <h4>Shade</h4>
-                                <h6>A</h6>
-                            </li>
-                            <li>
-                                <h4>Per box</h4>
-                                <h6>2 PCS</h6>
-                            </li>
+                        
                             <li>
                                 <h4>Location</h4>
-                                <h6>C2100R3</h6>
+                                 <h6>{{ $product->location }}</h6>
                             </li>
-                            <li>
-                                <h4>Status</h4>
-                                <h6>Mix Create</h6>
-                            </li>
-                            <li>
-                                <h4>Description</h4>
-                                <h6>CARRARA GIOIA (RR) / 1 PC BROKEN
-                                    (RETURNED)</h6>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
