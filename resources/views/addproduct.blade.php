@@ -14,6 +14,7 @@
 <!-- /add -->
 <div class="card">
     <div class="card-body">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <div class="row">
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
@@ -128,7 +129,7 @@
                 buttonsStyling: !1,
             }).then(function (t) {
                 t.value
-                        ? insertData()
+                        ? insertDataAlt()
                         : t.dismiss === Swal.DismissReason.cancel &&
                         Swal.fire({
                             title: "Cancelled",
@@ -254,5 +255,67 @@
 
         $('#qtyPcs').val(qty);
     }
+    
+    function insertDataAlt() {
+    let productName = $("#productName").val();
+    let productCode = $("#productCode").val();
+    let productSize = $("#productSize").val();
+    let qtySqm = $("#qtySqm").val();
+    let qtyPcs = $("#qtyPcs").val();
+    let categoryId = $('#categoryDropdown').val();
+    let productFinish = $('#finishDropDown').val();
+    let location = $("#location").val();
+    let crateNo = $("#crateNo").val();
+    
+    // Get the file input element
+    let productImage = $("#productImage")[0].files[0];
+    
+    let formData = new FormData();
+    formData.append('name', productName);
+    formData.append('code', productCode);
+    formData.append('categoryId', categoryId);
+    formData.append('productSize', productSize);
+    formData.append('location', location);
+    formData.append('crateNo', crateNo);
+    formData.append('qtySqm', qtySqm);
+    formData.append('qtyPcs', qtyPcs);
+    formData.append('productFinish', productFinish);
+    formData.append('productImage', productImage);
+    
+    
+        // Get the CSRF token value
+    let csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    // Add the CSRF token to the request headers
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        }
+    });
+   
+
+    $.ajax({
+        url: "{{ route('insertProductAlt') }}",
+        method: 'POST', // Assuming you want to use POST method
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+       
+        data: formData,
+        success: function (response) {
+            Swal.fire({
+                type: "success",
+                title: "Inserted!",
+                text: "Your product has been inserted.",
+                confirmButtonClass: "btn btn-success",
+            });
+            console.log(response);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        }
+    });
+}
+
 </script>    
 @endsection

@@ -42,7 +42,7 @@ class ProductController extends Controller {
     }
 
     public function insertProduct(Request $request) {
-        
+
 
         $product = new Product();
         $product->name = $request['name'];
@@ -54,16 +54,16 @@ class ProductController extends Controller {
         $product->crate = $request['crateNo'];
         $product->qtySqm = $request['qtySqm'];
         $product->qtyPcs = $request['qtyPcs'];
-        
-           if ($request->hasFile('productImage')) {
+
+        if ($request->hasFile('productImage')) {
             $imagePath = $request->file('productImage')->store('public/images');
             $product->imageUrl = $imagePath;
         } else {
-              $product->imageUrl = 'xxx';
+            $product->imageUrl = 'xxx';
         }
 
 
-      
+
         $status = false;
         try {
             $status = $product->save();
@@ -107,6 +107,16 @@ class ProductController extends Controller {
         $product->qtySqm = $request['qtySqm'];
         $product->qtyPcs = $request['qtyPcs'];
         $product->imageUrl = $request['imageUrl'];
+
+        
+        if ($request->hasFile('productImage')) {
+
+            $imagePath = $request->file('productImage')->store('public/images', 'public');
+
+            $product->imageUrl = $imagePath;
+        } else {
+            $product->imageUrl = 'xxx';
+        }
         $status = false;
         try {
             $status = $product->save();
@@ -117,6 +127,41 @@ class ProductController extends Controller {
 
         if ($status) {
             return response()->json(['message' => 'Product updated successfully', 'result' => $status]);
+        } else {
+            return response()->json(['message' => 'Something went wrong', 'result' => $status]);
+        }
+    }
+
+    public function insertProductAlt(Request $request) {
+        $product = new Product();
+        $product->name = $request['name'];
+        $product->code = $request['code'];
+        $product->categoryId = $request['categoryId'];
+        $product->finish = $request['productFinish'];
+        $product->size = $request['productSize'];
+        $product->location = $request['location'];
+        $product->crate = $request['crateNo'];
+        $product->qtySqm = $request['qtySqm'];
+        $product->qtyPcs = $request['qtyPcs'];
+
+        if ($request->hasFile('productImage')) {
+
+            $imagePath = $request->file('productImage')->store('public/images', 'public');
+
+            $product->imageUrl = $imagePath;
+        } else {
+            $product->imageUrl = 'xxx';
+        }
+
+        $status = false;
+        try {
+            $status = $product->save();
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Something went wrong', 'result' => $status]);
+        }
+
+        if ($status) {
+            return response()->json(['message' => 'Product added successfully', 'result' => $status]);
         } else {
             return response()->json(['message' => 'Something went wrong', 'result' => $status]);
         }
