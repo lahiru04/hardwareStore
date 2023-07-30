@@ -15,6 +15,7 @@
 <!-- /add -->
 <div class="card">
     <div class="card-body">
+         <meta name="csrf-token" content="{{ csrf_token() }}">
         <div class="row">
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
@@ -123,7 +124,7 @@
                 <div class="form-group">
                     <label>	Product Image</label>
                     <div class="image-upload">
-                        <input type="file">
+                         <input type="file" id="productImage" name="productImage">
                         <div class="image-uploads">
                             <img src="assets/img/icons/upload.svg" alt="img">
                             <h4>Drag and drop a file to upload</h4>
@@ -198,56 +199,68 @@
     });
 
 
-    function insertData()
-    {
-        let productId = $("#productId").val();
-        let productName = $("#productName").val();
-        let productCode = $("#productCode").val();
-        let productSize = $("#productSize").val();
-        let qtySqm = $("#qtySqm").val();
-        let qtyPcs = $("#qtyPcs").val();
-        let categoryId = $('#categoryDropdown').val();
-        let productFinish = $('#finishDropDown').val();
-        let location = $("#location").val();
-        let crateNo = $("#crateNo").val();
-        let imageUrl = "xxxxxx ";
-        
-        $.ajax({
-            url: "{{ route('updateProduct') }}",
-            method: 'GET',
-            dataType: 'json',
-            data: {
-                productId:productId,
-                name: productName,
-                code: productCode,
-                categoryId: categoryId,
-                productSize: productSize,
-                location: location,
-                crateNo: crateNo,
-                qtySqm: qtySqm,
-                qtyPcs: qtyPcs,
-                productFinish: productFinish,
-                imageUrl:imageUrl
+   function insertData() {
+    let productId = $("#productId").val();   
+    let productName = $("#productName").val();
+    let productCode = $("#productCode").val();
+    let productSize = $("#productSize").val();
+    let qtySqm = $("#qtySqm").val();
+    let qtyPcs = $("#qtyPcs").val();
+    let categoryId = $('#categoryDropdown').val();
+    let productFinish = $('#finishDropDown').val();
+    let location = $("#location").val();
+    let crateNo = $("#crateNo").val();
+    
+    // Get the file input element
+    let productImage = $("#productImage")[0].files[0];
+    
+    let formData = new FormData();
+     formData.append('productId', productId);
+    formData.append('name', productName);
+    formData.append('code', productCode);
+    formData.append('categoryId', categoryId);
+    formData.append('productSize', productSize);
+    formData.append('location', location);
+    formData.append('crateNo', crateNo);
+    formData.append('qtySqm', qtySqm);
+    formData.append('qtyPcs', qtyPcs);
+    formData.append('productFinish', productFinish);
+    formData.append('productImage', productImage);
+    
+    
+        // Get the CSRF token value
+    let csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-                        // Add more key-value pairs as needed
-            },
-            success: function (response) {
-                Swal.fire({
-                    type: "success",
-                    title: "Updated!",
-                    text: "Your product has been updated.",
-                    confirmButtonClass: "btn btn-success",
-                })
-                console.log(response);
-            }, error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-            }});
+    // Add the CSRF token to the request headers
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        }
+    });
+   
 
-
-
-
-    }
-
+    $.ajax({
+        url: "{{ route('updateProduct') }}",
+        method: 'POST', // Assuming you want to use POST method
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+       
+        data: formData,
+        success: function (response) {
+            Swal.fire({
+                type: "success",
+                title: "Inserted!",
+                text: "Your product has been inserted.",
+                confirmButtonClass: "btn btn-success",
+            });
+            console.log(response);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        }
+    });
+}
     function tileSizeValueValidator(value)
     {
 

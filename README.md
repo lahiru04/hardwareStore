@@ -50,3 +50,5 @@ To set up the Stock Management System for Hardware Stores, follow these steps:
    php artisan serve
 8. Access the application by visiting http://localhost:8000 in your web browser.   
 
+9. Setting up the symbolic link using php artisan storage:link
+
