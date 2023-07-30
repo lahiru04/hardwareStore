@@ -15,8 +15,8 @@
                 <span><img src="assets/img/icons/dash1.svg" alt="img"></span>
             </div>
             <div class="dash-widgetcontent">
-                <h5 >$<span class="counters" data-count="307144.00">$307,144.00</span></h5>
-                <h6>Total Purchase Due</h6>
+                <h5 >Sqm <span class="counters" data-count="307144.00">307.00</span></h5>
+                <h6>CALACATTA / ARABESCATO</h6>
             </div>
         </div>
     </div>
