@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
   |--------------------------------------------------------------------------
@@ -38,7 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('editproduct', [ProductController::class, 'editProduct'])->name('editproduct');
     Route::post('updateProduct', [ProductController::class, 'updateProduct'])->name('updateProduct');
     Route::post('insertProductAlt', [ProductController::class, 'insertProductAlt'])->name('insertProductAlt');
-    
+    Route::get('newuser', [UserController::class, 'adduser'])->name('adduser');
   
 
 });
