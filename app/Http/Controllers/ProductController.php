@@ -108,7 +108,6 @@ class ProductController extends Controller {
         $product->qtyPcs = $request['qtyPcs'];
         $product->imageUrl = $request['imageUrl'];
 
-        
         if ($request->hasFile('productImage')) {
 
             $imagePath = $request->file('productImage')->store('public/images', 'public');
@@ -133,37 +132,44 @@ class ProductController extends Controller {
     }
 
     public function insertProductAlt(Request $request) {
-        $product = new Product();
-        $product->name = $request['name'];
-        $product->code = $request['code'];
-        $product->categoryId = $request['categoryId'];
-        $product->finish = $request['productFinish'];
-        $product->size = $request['productSize'];
-        $product->location = $request['location'];
-        $product->crate = $request['crateNo'];
-        $product->qtySqm = $request['qtySqm'];
-        $product->qtyPcs = $request['qtyPcs'];
 
-        if ($request->hasFile('productImage')) {
+        try {  
+            $product = new Product();
+            $product->name = $request['name'];
+            $product->code = $request['code'];
+            $product->categoryId = $request['categoryId'];
+            $product->finish = $request['productFinish'];
+            $product->size = $request['productSize'];
+            $product->location = $request['location'];
+            $product->crate = $request['crateNo'];
+            $product->qtySqm = $request['qtySqm'];
+            $product->qtyPcs = $request['qtyPcs'];
 
-            $imagePath = $request->file('productImage')->store('public/images', 'public');
+            if ($request->hasFile('productImage')) {
 
-            $product->imageUrl = $imagePath;
-        } else {
-            $product->imageUrl = 'xxx';
-        }
+                $imagePath = $request->file('productImage')->store('public/images', 'public');
 
-        $status = false;
-        try {
-            $status = $product->save();
-        } catch (Exception $e) {
-            return response()->json(['message' => 'Something went wrong', 'result' => $status]);
-        }
+                $product->imageUrl = $imagePath;
+            } else {
+                $product->imageUrl = 'xxx';
+            }
 
-        if ($status) {
-            return response()->json(['message' => 'Product added successfully', 'result' => $status]);
-        } else {
-            return response()->json(['message' => 'Something went wrong', 'result' => $status]);
+            $status = false;
+            try {
+                $status = $product->save();
+            } catch (Exception $e) {
+                return response()->json(['message' => 'Something went wrong', 'result' => $status]);
+            }
+
+            if ($status) {
+                return response()->json(['message' => 'Product added successfully', 'result' => $status]);
+            } else {
+                return response()->json(['message' => 'Something went wrong', 'result' => $status]);
+            }
+        } catch (Exception  $e) {
+            echo "Caught exception: " . $e->getMessage();
+            
+           
         }
     }
 
