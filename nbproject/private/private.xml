@@ -4,13 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/xampp/htdocs/hardware/routes/web.php</file>
-            <file>file:/D:/xampp/htdocs/hardware/README.md</file>
+            <file>file:/D:/xampp/htdocs/hardware/app/Http/Controllers/UserController.php</file>
+            <file>file:/D:/xampp/htdocs/hardware/resources/views/signup.blade.php</file>
             <file>file:/D:/xampp/htdocs/hardware/resources/views/addproduct.blade.php</file>
             <file>file:/D:/xampp/htdocs/hardware/app/Models/Product.php</file>
-            <file>file:/D:/xampp/htdocs/hardware/resources/views/editproduct.blade.php</file>
-            <file>file:/D:/xampp/htdocs/hardware/resources/views/signinx.blade.php</file>
+            <file>file:/D:/xampp/htdocs/hardware/app/Http/Controllers/CustomAuthController.php</file>
+            <file>file:/D:/xampp/htdocs/hardware/app/Models/User.php</file>
             <file>file:/D:/xampp/htdocs/hardware/app/Http/Controllers/ProductController.php</file>
-            <file>file:/D:/xampp/htdocs/hardware/resources/views/productlist.blade.php</file>
+            <file>file:/D:/xampp/htdocs/hardware/resources/views/adduser.blade.php</file>
         </group>
     </open-files>
 </project-private>
