@@ -144,6 +144,7 @@ class ProductController extends Controller {
             $product->crate = $request['crateNo'];
             $product->qtySqm = $request['qtySqm'];
             $product->qtyPcs = $request['qtyPcs'];
+            $product->status = 1;
 
             if ($request->hasFile('productImage')) {
 

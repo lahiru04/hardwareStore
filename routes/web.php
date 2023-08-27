@@ -28,6 +28,10 @@ Route::get('/signup', function () {
     return view('signup');
 })->name('signup');
 
+Route::get('/login', function () {
+    return view('signinx');
+})->name('login');
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('home', [HomeController::class, 'index'])->name('home');

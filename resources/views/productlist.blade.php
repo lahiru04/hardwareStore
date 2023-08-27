@@ -39,7 +39,7 @@
                         <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img src="assets/img/icons/excel.svg" alt="img"></a>
                     </li>
                     <li>
-                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img src="assets/img/icons/printer.svg" alt="img"></a>
+                        <a id="print" data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img src="assets/img/icons/printer.svg" alt="img"></a>
                     </li>
                 </ul>
             </div>
@@ -147,11 +147,11 @@
                     </td>
                     <td>{{$product->name}}</td>
                     <td>{{$categories[$product->categoryId-1]}}</td>
-                     <td>{{$product->finish}}</td>
-                   <td>{{$product->size}}</td>
-                        <td>{{$product->crate}}</td>
-                     <td>{{$product->qtySqm}}</td>
-                   <td>{{$product->location}}</td>
+                    <td>{{$product->finish}}</td>
+                    <td>{{$product->size}}</td>
+                    <td>{{$product->crate}}</td>
+                    <td>{{$product->qtySqm}}</td>
+                    <td>{{$product->location}}</td>
                     <td>
                         <a class="me-3" href="product-details?productID={{$product->id}}">
                             <img src="assets/img/icons/eye.svg" alt="img">
@@ -159,7 +159,7 @@
                         <a class="me-3" href="editproduct?productID={{$product->id}}">
                             <img src="assets/img/icons/edit.svg" alt="img">
                         </a>
-                       <a class="confirm-text" href="javascript:deleteProduct({{$product->id}});">
+                        <a class="confirm-text" href="javascript:deleteProduct({{$product->id}});">
                             <img src="assets/img/icons/delete.svg" alt="img">
                         </a>
                     </td>
@@ -187,56 +187,42 @@
     $(document).ready(function () {
         var categories = $.makeArray(["Travertine", "Granite", "Marble", "Limestone", "Bluestone", "Mosaics"]);
 
-        // AJAX request to load data into the table
-        /*   $.ajax({
-         url: "{{ route('loadAllProducts') }}",
-         method: 'GET',
-         dataType: 'json',
-         success: function(response) {
-         // Iterate through the response data and add rows to the table
-         $.each(response, function(index, product) {
-         //                    var row = '<tr>' +
-         //                        '<td>' + product.id + '</td>' +
-         //                        '<td>' + product.name + '</td>' +
-         //                        '</tr>';
-         
-         var row = '<tr>' +
-         '<td>' +
-         '<label class="checkboxs">' +
-         '<input type="checkbox">' +
-         '<span class="checkmarks"></span>' +
-         '</label>' +
-         '</td>' +
-         '<td class="productimgname">' +
-         '<a href="{{ url('/product-details') }}?productID='+product.id+'" class="product-img">' +
-         '<img src="assets/img/product/product2.jpg" alt="product">' +
-         '</a>' +
-         '<a href="{{ url('/product-details') }}?productID='+product.id+'">' + product.name + '</a>' +
-         '</td>' +
-         '<td>' + product.code + '</td>' +
-         '<td>'+categories[product.categoryId-1]+'</td>' +
-         '<td>'+product.finish+'</td>' +
-         '<td>'+product.size+'</td>' +
-         '<td>'+product.crate+'</td>' +
-         '<td>'+product.qtySqm+'</td>' +
-         '<td>'+product.location+'</td>' +
-         '<td>' +
-         '<a class="me-3" href="product-details?productID='+product.id+'">' +
-         '<img src="assets/img/icons/eye.svg" alt="img">' +
-         '</a>' +
-         '<a class="me-3" href="editproduct?productID='+product.id+'">' +
-         '<img src="assets/img/icons/edit.svg" alt="img">' +
-         '</a>' +
-         '<a class="confirm-text" href="javascript:deleteProduct('+product.id+');">' +
-         '<img src="assets/img/icons/delete.svg" alt="img">' +
-         '</a>' +
-         '</td>' +
-         '</tr>';
-         
-         $('#productTable tbody').append(row);
-         });
-         }
-         });*/
+        $('#print').click(function () {
+            var printWindow = window.open('test1', 'test2');
+
+            var table = document.getElementById('productTable');
+            var clonedTable = table.cloneNode(true);
+
+            // Remove the "Action" column and checkbox column
+            var headerRow = clonedTable.querySelector('thead tr');
+            headerRow.removeChild(headerRow.cells[0]); // Remove checkbox column
+            headerRow.removeChild(headerRow.cells[8]); // Remove "Action" column
+
+            var rows = clonedTable.querySelectorAll('tbody tr');
+            rows.forEach(function (row) {
+                row.removeChild(row.cells[0]); // Remove checkbox column
+                row.removeChild(row.cells[8]); // Remove "Action" column
+            });
+
+            var content = `<h1>Printed Product List</h1>`;
+            content += clonedTable.outerHTML;
+
+            // Calculate total quantity
+            var totalQty = 0;
+            rows.forEach(function (row) {
+                totalQty += parseFloat(row.cells[6].textContent); // Assuming the quantity is in the 8th column
+            });
+
+            content += `<p>Total Quantity: ${totalQty.toFixed(2)} sqm</p>`;
+
+            printWindow.document.write(content);
+            printWindow.document.close();
+            printWindow.print();
+
+        });
+
+
+
     });
 
     function deleteProduct(productId)
