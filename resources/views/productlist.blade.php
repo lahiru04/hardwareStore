@@ -145,7 +145,7 @@
                         </a>
                         <a href="javascript:void(0);">{{$product->name}}</a>
                     </td>
-                    <td>{{$product->name}}</td>
+                    <td>{{$product->code}}</td>
                     <td>{{$categories[$product->categoryId-1]}}</td>
                     <td>{{$product->finish}}</td>
                     <td>{{$product->size}}</td>
