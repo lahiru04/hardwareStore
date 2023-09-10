@@ -15,7 +15,7 @@
                 <span><img src="assets/img/icons/dash1.svg" alt="img"></span>
             </div>
             <div class="dash-widgetcontent">
-                <h5 >Sqm <span class="counters" data-count="307144.00">307.00</span></h5>
+                <h5 ><span class="counters" data-count="307144.00">307.00</span> m²</h5>
                 <h6>CALACATTA / ARABESCATO</h6>
             </div>
         </div>
@@ -104,29 +104,29 @@
     <div class="col-lg-7 col-sm-12 col-12 d-flex">
         <div class="card flex-fill">
             <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Purchase & Sales</h5>
+                <h5 class="card-title mb-0">Mosaics & Posilane</h5>
                 <div class="graph-sets">
                     <ul>
                         <li>
-                            <span>Sales</span>
+                            <span>Display</span>
                         </li>
                         <li>
-                            <span>Purchase</span>
+                            <span>Stock</span>
                         </li>
                     </ul>
                     <div class="dropdown">
                         <button class="btn btn-white btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            2022 <img src="assets/img/icons/dropdown.svg" alt="img" class="ms-2">
+                            Showroom <img src="assets/img/icons/dropdown.svg" alt="img" class="ms-2">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li>
-                                <a href="javascript:void(0);" class="dropdown-item">2022</a>
+                                <a href="javascript:void(0);" class="dropdown-item">Showroom</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="dropdown-item">2021</a>
+                                <a href="javascript:void(0);" class="dropdown-item">Display</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="dropdown-item">2020</a>
+                                <a href="javascript:void(0);" class="dropdown-item">Stock</a>
                             </li>												
                         </ul>
                     </div>
